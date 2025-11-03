@@ -1,13 +1,12 @@
 package com.example.tp_foyer.entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-public class Etudiant {
+public class Etudiant implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEtudiant;
@@ -18,5 +17,7 @@ public class Etudiant {
 
     private String ecole;
     private Date dateNaissance;
+    @ManyToMany
+    private List<Reservation> reservations;
 }
 

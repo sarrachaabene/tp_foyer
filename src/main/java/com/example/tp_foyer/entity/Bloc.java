@@ -1,14 +1,20 @@
 package com.example.tp_foyer.entity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
+import java.util.List;
+
 @Entity
-public class Bloc {
+public class Bloc implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idBloc;
 
     private String nomBloc;
 
-    private Long capaciteFoyerBloc;}
+    private Long capaciteFoyerBloc;
+    @ManyToOne
+    private Foyer foyer;
+
+    @OneToMany(mappedBy = "bloc", cascade = CascadeType.ALL)
+    private List<Chambre> chambres;}
